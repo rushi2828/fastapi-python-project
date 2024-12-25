@@ -1,6 +1,15 @@
 Install Mysql server
 Install Mysql workbench
 
+Status mysql service
+$ service mysql status 
+
+Start mysql service
+$ service mysql start 
+
+Stop mysql service
+$ service mysql stop 
+
 Commad for run this project:
 $ uvicorn main:app --reload
 
