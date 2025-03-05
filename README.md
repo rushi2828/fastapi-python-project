@@ -49,7 +49,7 @@ $ service mysql start
 
 3. Run the commad
 ```
-$ uvicorn main:app --reload
+$ uvicorn app.main:app --reload
 ```
 
 4. Create item using postman at [POST] http://127.0.0.1:8000/items
