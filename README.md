@@ -36,7 +36,7 @@ Follow these steps to get the project running on your local machine.
 git clone https://github.com/rushi2828/fastapi-python-project.git
 cd fastapi-python-project
 ```
-## Running the Application
+## Running the Application locally
 1. Check server status
 ```
 $ service mysql status
@@ -67,4 +67,28 @@ $ uvicorn app.main:app --reload
 $ service mysql stop
 ```
 
+## Running the Application with Docker Compose
 
+1. Build and Run the Project (Linux/Windows)
+```
+docker-compose down
+docker-compose up --build
+```
+2. Access Swagger API
+```
+http://localhost:8000/docs
+```
+### Troubleshooting
+
+1. Stop running containers:
+```
+docker-compose down
+```
+2. Rebuild and run:
+```
+docker-compose up --build
+```
+### To Stop Containers
+```
+docker-compose down
+```
