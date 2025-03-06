@@ -5,8 +5,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-
 # Step 1: Configure the MySQL Database URL
 # DATABASE_URL = "mysql+pymysql://root:Rushi*123@localhost:3306/pyton-project-db"
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -53,9 +51,32 @@ def create_item(item: ItemCreate, db: Session = Depends(get_db)):
     db.refresh(db_item)
     return db_item
 
+# Step 10: Retrive API Endpoints
 @app.get("/items/{item_id}")
 def read_item(item_id: int, db: Session = Depends(get_db)):
     item = db.query(Item).filter(Item.id == item_id).first()
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     return item
+
+# Step 11: Update API Endpoints
+@app.put("/items/{item_id}")
+def update_item(item_id: int, item: ItemCreate, db: Session = Depends(get_db)):
+    db_item = db.query(Item).filter(Item.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    db_item.name = item.name
+    db_item.description = item.description
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+# Step 12: Delete API Endpoints
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(Item).filter(Item.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    db.delete(db_item)
+    db.commit()
+    return {"message": "Item deleted successfully"} 
