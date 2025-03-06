@@ -84,6 +84,8 @@ docker-compose up --build
 ```
 http://localhost:8000/docs
 ```
+![image](https://github.com/user-attachments/assets/17ae6dd5-7099-4413-8281-9db57f683eae)
+
 ### Troubleshooting
 
 1. Stop running containers:
@@ -134,3 +136,5 @@ kubectl port-forward svc/fastapi-service 8000:8000
 ```
 Swagger Docs: http://localhost:8000/docs
 ```
+![image](https://github.com/user-attachments/assets/2663162f-56d6-4cbf-a59f-6829d4075ccb)
+
