@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
         - name: fastapi-app
-          image: rushi2323/fast-api:v1
+          image: rushi2323/fast-api
           env:
             - name: DATABASE_URL
-              value: "mysql+pymysql://$(DB_USER):$(MYSQL_ROOT_PASSWORD)@$(DB_HOST):3306/$(DB_NAME)"
+              value: "mysql+pymysql://root:$(MYSQL_ROOT_PASSWORD)@$(DB_HOST):3306/$(DB_NAME)"
           envFrom:
             - configMapRef:
                 name: app-config
@@ -38,7 +38,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: fastapi_app
+    app: fastapi-app
   ports:
     - protocol: TCP
       port: 8000
