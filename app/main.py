@@ -69,7 +69,7 @@ def update_item(item_id: int, item: ItemCreate, db: Session = Depends(get_db)):
     db_item.description = item.description
     db.commit()
     db.refresh(db_item)
-    return db_item
+    return {"message": "Item updated successfully"}
 
 # Step 12: Delete API Endpoints
 @app.delete("/items/{item_id}")
