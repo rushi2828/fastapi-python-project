@@ -69,12 +69,18 @@ $ service mysql stop
 
 ## Running the Application with Docker Compose
 
-1. Build and Run the Project (Linux/Windows)
+1. Build Docker Image
+```
+docker build -t <username>/fastapi-app:latest .
+docker push <username>/fastapi-app:latest
+```
+
+2. Build and Run the Project (Linux/Windows)
 ```
 docker-compose down
 docker-compose up --build
 ```
-2. Access Swagger API
+3. Access Swagger API
 ```
 http://localhost:8000/docs
 ```
@@ -91,4 +97,40 @@ docker-compose up --build
 ### To Stop Containers
 ```
 docker-compose down
+```
+# FastAPI + MySQL Kubernetes Deployment
+## 📄 Apply Kubernetes Manifests
+- Secret
+```
+kubectl apply -f k8s/mysql-secret.yaml
+```
+- ConfigMaps
+```
+kubectl apply -f k8s/mysql-configmap.yaml
+```
+- Persistent Volume
+```
+kubectl apply -f k8s/mysql-pvc.yaml
+```
+- Deploy MySQL deployment+service
+```
+kubectl apply -f k8s/mysql-deployment.yaml
+```
+- Deploy Fastapi deployment and expose service
+```
+kubectl apply -f k8s/fastapi-deployment.yaml
+```
+### 🔍 Verify Deployments
+- List running pods:
+```
+kubectl get pods
+```
+### 🔥 Port Forwarding
+```
+kubectl port-forward svc/fastapi-service 8000:8000
+```
+### ✅ Test API
+- Open your browser and visit:
+```
+Swagger Docs: http://localhost:8000/docs
 ```
