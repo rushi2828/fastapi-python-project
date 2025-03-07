@@ -6,7 +6,6 @@ from sqlalchemy.orm import sessionmaker, Session
 import os
 
 # Step 1: Configure the MySQL Database URL
-# DATABASE_URL = "mysql+pymysql://root:Rushi*123@localhost:3306/pyton-project-db"
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 # Step 2: Initialize SQLAlchemy Engine and Session
